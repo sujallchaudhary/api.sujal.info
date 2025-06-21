@@ -13,7 +13,7 @@ const getStudents = async (req, res) => {
         } = req.query;
         const filter = {};
         if (branch && branch.trim() !== '') {
-            filter.branch = { $regex: branch.trim(), $options: 'i' };
+            filter.branch = branch;
         }
 
         if (year && year.trim() !== '') {
@@ -45,6 +45,7 @@ const getStudents = async (req, res) => {
             .sort(sortObj)
             .skip(skip)
             .limit(limit)
+            .populate('branch')
             .lean();
 
         const totalStudents = await Student.countDocuments(filter);
