@@ -81,19 +81,39 @@ const updateProject = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, description, image, githubLink, liveLink } = req.body;
-        const updatedProject = await Project.findByIdAndUpdate(id, {
+        
+        if (!title || !description) {
+            return res.status(400).json({
+                success: false,
+                message: 'Title and description are required'
+            });
+        }
+
+        const updateData = {
             title,
             description,
-            image,
             githubLink,
             liveLink
-        }, { new: true });
+        };
+
+        // Only update image if provided
+        if (image) {
+            updateData.image = image;
+        }
+
+        const updatedProject = await Project.findByIdAndUpdate(
+            id, 
+            updateData, 
+            { new: true, runValidators: true }
+        );
+        
         if (!updatedProject) {
             return res.status(404).json({
                 success: false,
                 message: 'Project not found'
             });
         }
+        
         return res.status(200).json({
             success: true,
             message: 'Project updated successfully',

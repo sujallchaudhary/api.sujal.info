@@ -2,19 +2,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const path = require('path');
-const expressLayouts = require('express-ejs-layouts');
 const { morganMiddleware, logger } = require('./src/utils/logger');
 const dbConnection = require('./src/database/connection');
 
 dotenv.config();
 const app = express();
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(expressLayouts);
-app.set('layout', 'layout');
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morganMiddleware.console);
 app.use(morganMiddleware.file);
@@ -58,11 +50,12 @@ logger.info('Application starting...', {
 
 const portfolioRoutes = require('./src/routes/portfolio.route');
 const nsutRoutes = require('./src/routes/nsut.route');
-const adminRoutes = require('./src/routes/admin.route');
+const authRoutes = require('./src/routes/auth.route');
+
 
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/nsut', nsutRoutes);
-app.use('/admin', adminRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).json({
