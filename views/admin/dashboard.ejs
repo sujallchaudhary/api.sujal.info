@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h1>
+</div>
+
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Total Projects
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <%= projectsCount %>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-code fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Total Skills
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <%= skillsCount %>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-tools fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-code me-2"></i>
+                    Project Management
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-3">Manage your portfolio projects</p>
+                <div class="d-grid gap-2">
+                    <a href="/admin/projects" class="btn btn-primary btn-custom">
+                        <i class="fas fa-list me-2"></i>
+                        View All Projects
+                    </a>
+                    <a href="/admin/projects/create" class="btn btn-outline-primary btn-custom">
+                        <i class="fas fa-plus me-2"></i>
+                        Add New Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-success">
+                    <i class="fas fa-tools me-2"></i>
+                    Skills Management
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-3">Manage your technical skills</p>
+                <div class="d-grid gap-2">
+                    <a href="/admin/skills" class="btn btn-success btn-custom">
+                        <i class="fas fa-list me-2"></i>
+                        View All Skills
+                    </a>
+                    <a href="/admin/skills/create" class="btn btn-outline-success btn-custom">
+                        <i class="fas fa-plus me-2"></i>
+                        Add New Skill
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

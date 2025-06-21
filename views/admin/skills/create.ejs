@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-plus me-2"></i>Add New Skill</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="/admin/skills" class="btn btn-secondary btn-custom">
+            <i class="fas fa-arrow-left me-2"></i>
+            Back to Skills
+        </a>
+    </div>
+</div>
+
+<% if (error) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<% } %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="POST" action="/admin/skills/create" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">
+                            <i class="fas fa-tag me-2"></i>
+                            Skill Name *
+                        </label>
+                        <input type="text" class="form-control" id="name" name="name" 
+                               value="<%= formData.name || '' %>" 
+                               placeholder="e.g., JavaScript, React, Node.js" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">
+                            <i class="fas fa-image me-2"></i>
+                            Skill Icon/Image *
+                        </label>
+                        <input type="file" class="form-control" id="image" name="image" 
+                               accept="image/*" required>
+                        <div class="form-text">
+                            Upload an icon or logo for this skill (PNG, JPG, SVG recommended)
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success btn-custom">
+                            <i class="fas fa-save me-2"></i>
+                            Create Skill
+                        </button>
+                        <a href="/admin/skills" class="btn btn-secondary btn-custom">
+                            <i class="fas fa-times me-2"></i>
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
