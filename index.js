@@ -51,11 +51,13 @@ logger.info('Application starting...', {
 const portfolioRoutes = require('./src/routes/portfolio.route');
 const nsutRoutes = require('./src/routes/nsut.route');
 const authRoutes = require('./src/routes/auth.route');
+const urlRoutes = require('./src/routes/url.route');
 
 
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/nsut', nsutRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/url', urlRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).json({
