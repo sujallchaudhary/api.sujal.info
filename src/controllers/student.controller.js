@@ -112,7 +112,38 @@ const getDetailsByRollNo = async (req, res) => {
     }
 };
 
+const getStudentByEmail = async (req, res) => {
+    try {
+        const { email } = req.params;
+        if (!email) {
+            return res.status(400).json({
+                success: false,
+                message: 'Email is required'
+            });
+        }
+        const student = await Student.findOne({ email });
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                message: 'Student not found'
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: 'Student details retrieved successfully',
+            data: student
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     getStudents,
-    getDetailsByRollNo
+    getDetailsByRollNo,
+    getStudentByEmail
 };
