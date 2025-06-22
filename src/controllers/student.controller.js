@@ -121,7 +121,7 @@ const getStudentByEmail = async (req, res) => {
                 message: 'Email is required'
             });
         }
-        const student = await Student.findOne({ email });
+        const student = await Student.findOne({ email }).populate('branch');
         if (!student) {
             return res.status(404).json({
                 success: false,
