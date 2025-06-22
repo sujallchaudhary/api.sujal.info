@@ -4,7 +4,7 @@
   "description": "API for Sujal's portfolio and NSUT data",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "logs:rotate": "node src/utils/logRotation.js",
     "logs:clean": "node src/utils/logRotation.js"
