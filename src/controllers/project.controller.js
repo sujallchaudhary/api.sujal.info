@@ -2,7 +2,7 @@ const Project = require('../models/projects.model');
 
 const getProjects = async (req, res) => {
     try {
-        const projects = await Project.find({ isDeleted: false }).select('-isDeleted').lean();
+        const projects = await Project.find({ isDeleted: false }).select('-isDeleted').sort({ createdAt: -1 }).lean();
         if (!projects || projects.length === 0) {
             return res.status(404).json({
                 success: false,

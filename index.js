@@ -59,6 +59,7 @@ app.use('/api/nsut', nsutRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/url', urlRoutes);
 
+
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'api is working fine.',

@@ -21,6 +21,8 @@ const urlSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true // This adds createdAt and updatedAt fields automatically
 });
 
 const Url = mongoose.model('Url', urlSchema);
