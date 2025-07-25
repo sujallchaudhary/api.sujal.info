@@ -2,7 +2,7 @@ const Branch = require('../models/branch.model.js');
 
 const getBranches = async (req, res) => {
     try {
-        const branches = await Branch.find();
+        const branches = await Branch.find().sort({ name: 1 }).lean();
         if (!branches || branches.length === 0) {
             return res.status(404).json({
                 success: false,
