@@ -12,32 +12,10 @@ app.use(morganMiddleware.console);
 app.use(morganMiddleware.file);
 app.use(morganMiddleware.errorFile);
 app.use(morganMiddleware.api);
-
-if (process.env.NODE_ENV === 'development') {
-    app.use(cors({
-        origin: true,
-        credentials: true
-    }));
-} else {
-    const corsOptions = {
-        origin: function (origin, callback) {
-            if (!origin) return callback(null, true);
-            const allowedPattern = /^https?:\/\/([a-zA-Z0-9-]+\.)*sujal\.info(:\d+)?$/;
-            if (allowedPattern.test(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error('Not allowed by CORS'));
-            }
-        },
-        credentials: true,
-        optionsSuccessStatus: 200
-    };
-    
-    app.use(cors(corsOptions));
-}
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
+app.use(cors());
 
 dbConnection();
 
