@@ -12,10 +12,29 @@ app.use(morganMiddleware.console);
 app.use(morganMiddleware.file);
 app.use(morganMiddleware.errorFile);
 app.use(morganMiddleware.api);
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            return callback(null, true);
+        }
+        const allowedPattern = /^https?:\/\/([a-zA-Z0-9-]+\.)*sujal\.info(:\d+)?$/;
+        if (allowedPattern.test(origin)) {
+            return callback(null, true);
+        }
+        callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
-app.use(cors());
 
 dbConnection();
 
