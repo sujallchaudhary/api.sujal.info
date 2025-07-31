@@ -2,13 +2,20 @@ const jsonwebtoken = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
     try {
-        const token = req.cookies.token;
+        let token = req.cookies.token;
+        if (!token) {
+            const authHeader = req.headers.authorization;
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+                token = authHeader.substring(7);
+            }
+        }
         if (!token) {
             return res.status(401).json({
                 success: false,
                 message: 'Access denied. No token provided.'
             });
         }
+        
         const decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
         next();
