@@ -123,11 +123,11 @@ const openUrlByShortCode = async (req, res) => {
 
 const updateUrl = async (req, res) => {
     const { id } = req.params;
-    const { fullUrl, shortCode } = req.body;
+    const { fullUrl, shortenUrl } = req.body;
     try {
         const updatedUrl = await Url.findByIdAndUpdate(id, {
             fullUrl,
-            shortCode
+            shortenUrl
         }, { new: true });
         if (!updatedUrl) {
             return res.status(404).json({

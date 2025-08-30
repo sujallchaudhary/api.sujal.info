@@ -57,9 +57,9 @@ const createProject = async (req, res) => {
             });
         }
         const newProject = await Project.create({
-            title,
+            name:title,
             description,
-            image,
+            thumbnail: image,
             githubLink,
             liveLink
         });
