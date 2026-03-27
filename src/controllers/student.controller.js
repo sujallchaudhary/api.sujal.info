@@ -91,7 +91,7 @@ const getDetailsByRollNo = async (req, res) => {
                 message: 'Roll number is required'
             });
         }
-        const student = await Student.findOne({ rollNo });
+        const student = await Student.findOne({ rollNo }).populate('branch');
         if (!student) {
             return res.status(404).json({
                 success: false,
